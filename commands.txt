@@ -1,0 +1,124 @@
+
+Импорт моделей
+
+from django.contrib.auth.models import User
+from news.models import Author, Category, Post, Comment, PostCategory
+
+
+
+user1 = User.objects.create_user('john_doe')
+user2 = User.objects.create_user('jane_smith')
+
+
+
+author1 = Author.objects.create(user=user1)
+author2 = Author.objects.create(user=user2)
+
+
+
+cat1 = Category.objects.create(name='Спорт')
+cat2 = Category.objects.create(name='Политика')
+cat3 = Category.objects.create(name='Образование')
+cat4 = Category.objects.create(name='Технологии')
+
+
+article1 = Post.objects.create(
+    author=author1,
+    category_type='AR',
+    title='Новые технологии в образовании',
+    text='Современные технологии кардинально меняют подходы к обучению. Искусственный интеллект, виртуальная реальность и интерактивные платформы открывают новые возможности для студентов и преподавателей.'
+)
+
+article2 = Post.objects.create(
+    author=author2,
+    category_type='AR', 
+    title='Спортивные достижения года',
+    text='Этот год стал особенно богатым на спортивные события. Множество рекордов было побито, новые звезды засияли на спортивном небосклоне.'
+)
+
+news1 = Post.objects.create(
+    author=author1,
+    category_type='NW',
+    title='Новые изменения в политике образования',
+    text='Министерство образования объявило о кардинальных изменениях в системе высшего образования, которые вступят в силу с нового учебного года.'
+)
+
+
+
+PostCategory.objects.create(post=article1, category=cat4)  # Технологии
+PostCategory.objects.create(post=article1, category=cat3)  # Образование
+PostCategory.objects.create(post=article2, category=cat1)  # Спорт
+PostCategory.objects.create(post=news1, category=cat2)     # Политика
+PostCategory.objects.create(post=news1, category=cat3)     # Образование
+
+
+
+comment1 = Comment.objects.create(
+    post=article1,
+    user=user2,
+    text='Очень интересная статья о технологиях!'
+)
+
+comment2 = Comment.objects.create(
+    post=article1,
+    user=user1,
+    text='Согласен, будущее за новыми технологиями в образовании.'
+)
+
+comment3 = Comment.objects.create(
+    post=article2,
+    user=user1,
+    text='Отличный обзор спортивных событий года.'
+)
+
+comment4 = Comment.objects.create(
+    post=news1,
+    user=user2,
+    text='Надеюсь, изменения будут к лучшему.'
+)
+
+
+
+
+article1.like()
+article1.like()  
+article2.like()
+article2.like()
+article2.like()  
+news1.like()    
+
+
+comment1.like()
+comment1.like()  
+comment2.like() 
+comment3.dislike()  
+comment4.like()  
+
+
+
+author1.update_rating()
+author2.update_rating()
+
+
+
+best_author = Author.objects.order_by('-rating').first()
+print(f"Лучший автор: {best_author.user.username}")
+print(f"Его рейтинг: {best_author.rating}")
+
+
+best_post = Post.objects.order_by('-rating').first()
+print(f"Дата: {best_post.date_creation.strftime('%d.%m.%Y')}")
+print(f"Автор: {best_post.author.user.username}")
+print(f"Рейтинг: {best_post.rating}")
+print(f"Заголовок: {best_post.title}")
+print(f"Превью: {best_post.preview()}")
+
+
+
+comments = Comment.objects.filter(post=best_post)
+for comment in comments:
+    print(f"Дата: {comment.date_creation.strftime('%d.%m.%Y')}")
+    print(f"Пользователь: {comment.user.username}")
+    print(f"Рейтинг: {comment.rating}")
+    print(f"Текст: {comment.text}")
+    print("-" * 40)
