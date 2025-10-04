@@ -1,0 +1,26 @@
+{% extends 'flatpages/default.html' %}
+{% load news_filters %}
+{% block title %}
+{{ news.title }}
+{% endblock title %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h1>{{ news.title|censor }}</h1>
+        <p class="text-muted">
+            
+            {{ news.date_creation|date:'d.m.Y' }} | 
+            Автор: {{ news.author.user.username }} | 
+            Рейтинг: {{ news.rating }}
+        </p>
+        <hr>
+        
+        <p>{{ news.text|censor }}</p>
+        
+        <div class="mt-3">
+            <a href="/news/" class="btn btn-primary">← Назад к списку новостей</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

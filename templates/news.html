@@ -1,0 +1,43 @@
+{% extends 'flatpages/default.html' %}
+{% load news_filters %}
+{% load news_tags %}
+
+{% block title %}
+Новости
+{% endblock title %}
+
+{% block content %}
+    <h1>Все новости</h1>
+    
+    
+    <h3>{% current_time '%d.%m.%Y %H:%M' %}</h3>
+    <p class="text-muted">{% news_stats %}</p>
+    
+    <hr>
+
+    {% if news %}  
+        {% for item in news %}  
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title|censor }}</h5>  
+                    <p class="text-muted">
+                        {{ item.date_creation|date:'d.m.Y' }} | 
+                        Автор: {{ item.author.user.username }} | 
+                        
+                        
+                        Рейтинг: 
+                        <span class="{{ item.rating|rating_color }}">
+                            <strong>{{ item.rating }}</strong>
+                        </span>
+                        |
+                        {{ item.rating|rating_label:'text' }}
+                        {{ item.rating|rating_label:'icon' }}
+                    </p>
+                    <p class="card-text">{{ item.text|censor|truncatechars:20 }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}  
+        <h2>Новостей нет!</h2>
+    {% endif %}
+{% endblock content %}
