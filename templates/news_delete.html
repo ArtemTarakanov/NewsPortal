@@ -1,0 +1,26 @@
+{% extends 'flatpages/default.html' %}
+{% load news_filters %}
+
+{% block title %}
+Удаление новости
+{% endblock title %}
+
+{% block content %}
+    <h1>Удаление новости</h1>
+    
+    <div class="alert alert-danger">
+        <h4>Вы уверены, что хотите удалить эту новость?</h4>
+        <p><strong>"{{ object.title|censor }}"</strong></p>
+        <p class="text-muted">
+            Автор: {{ object.author.user.username }} | 
+            Дата: {{ object.date_creation|date:'d.m.Y' }} |
+            Тип: {% if object.category_type == 'NW' %}Новость{% else %}Статья{% endif %}
+        </p>
+    </div>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Да, удалить" class="btn btn-danger" />
+        <a href="{% url 'news_list' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+{% endblock content %}

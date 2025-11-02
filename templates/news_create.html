@@ -1,0 +1,50 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Создание новости/статьи
+{% endblock title %}
+
+{% block content %}
+    <h1>Создание новости/статьи</h1>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        
+        {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">
+                    {{ field.label }}
+                    {% if field.field.required %}
+                        <span class="text-danger">*</span>
+                    {% endif %}
+                </label>
+                {{ field }}
+                {% if field.help_text %}
+                    <div class="form-text">{{ field.help_text }}</div>
+                {% endif %}
+                {% if field.errors %}
+                    <div class="alert alert-danger mt-1">
+                        {% for error in field.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        
+        {# ↓↓↓ ОБЩИЕ ОШИБКИ ФОРМЫ ↓↓↓ #}
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <input type="submit" value="Создать" class="btn btn-primary" />
+    </form>
+    
+    <div class="mt-3">
+        <a href="{% url 'news_list' %}" class="btn btn-secondary">← Назад к списку новостей</a>
+    </div>
+{% endblock content %}
