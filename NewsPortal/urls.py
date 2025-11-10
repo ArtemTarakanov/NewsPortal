@@ -6,4 +6,7 @@ urlpatterns = [
     path('news/', include('news.urls')),           # пути для новостей
     path('articles/', include('news.urls_articles')),  
     path('pages/', include('django.contrib.flatpages.urls')),
+        path('', include('protect.urls')),          
+    path('sign/', include('sign.urls')),        
+    path('accounts/', include('allauth.urls')),
 ]
