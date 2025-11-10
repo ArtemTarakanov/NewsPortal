@@ -1,0 +1,1 @@
+echo "Добро пожаловать на NewsPortal! Подтвердите вашу регистрацию" > templates/account/email/email_confirmation_subject.txt

@@ -1,0 +1,36 @@
+cat > templates/account/email/email_confirmation_signup_message.html << 'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Добро пожаловать!</title>
+</head>
+<body>
+    {% load account %}
+    <h1>Добро пожаловать на NewsPortal, {{ user.username }}! 🎉</h1>
+    
+    <p>Мы рады приветствовать вас в нашем сообществе!</p>
+    
+    <p>Теперь вы можете:</p>
+    <ul>
+        <li>📰 Читать свежие новости и статьи</li>
+        <li>💬 Оставлять комментарии</li>
+        <li>⭐ Ставить оценки постам</li>
+        <li>📧 Подписываться на любимые категории</li>
+    </ul>
+    
+    <p><strong>Для завершения регистрации подтвердите ваш email:</strong></p>
+    <p>
+        <a href="{{ activate_url }}" style="background-color: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
+            ✅ Подтвердить регистрацию
+        </a>
+    </p>
+    
+    <p>Ссылка для подтверждения:<br>
+    <code>{{ activate_url }}</code></p>
+    
+    <hr>
+    <p><small>С уважением,<br>Команда NewsPortal</small></p>
+</body>
+</html>
+EOF

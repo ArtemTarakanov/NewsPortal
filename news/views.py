@@ -7,6 +7,10 @@ from django.shortcuts import render, redirect
 from .models import Post
 from .filters import PostFilter  
 from .forms import PostForm
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, get_object_or_404
+from .models import Category
+
 
 class NewsList(ListView):
     model = Post                    
@@ -25,6 +29,7 @@ class NewsList(ListView):
         context['filterset'] = self.filterset
         return context
 
+
 class NewsDetail(DetailView):
     model = Post
     template_name = 'news_detail.html'
@@ -36,6 +41,12 @@ class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
     template_name = 'news_create.html'
+    
+    def get_form_kwargs(self):
+        """Передаем пользователя в форму для проверки лимита постов"""
+        kwargs = super().get_form_kwargs()
+        kwargs['request_user'] = self.request.user
+        return kwargs
     
     def form_valid(self, form):
         post = form.save(commit=False)
@@ -57,10 +68,12 @@ class NewsUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         form.save_m2m()
         return super().form_valid(form)
 
+
 class NewsDelete(DeleteView):
     model = Post
     template_name = 'news_delete.html'
     success_url = reverse_lazy('news_list')
+
 
 class NewsSearch(ListView):
     model = Post
@@ -86,6 +99,12 @@ class ArticleCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Post
     template_name = 'news_create.html'
     
+    def get_form_kwargs(self):
+        """Передаем пользователя в форму для проверки лимита постов"""
+        kwargs = super().get_form_kwargs()
+        kwargs['request_user'] = self.request.user
+        return kwargs
+    
     def form_valid(self, form):
         post = form.save(commit=False)
         post.author = self.request.user.author
@@ -107,10 +126,12 @@ class ArticleUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         form.save_m2m()
         return super().form_valid(form)
 
+
 class ArticleDelete(DeleteView):
     model = Post
     template_name = 'news_delete.html'
     success_url = reverse_lazy('news_list')
+
 
 def register(request):
     if request.method == 'POST':
@@ -122,3 +143,17 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
+
+
+@login_required
+def subscribe(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    category.subscribers.add(request.user)
+    return redirect('news_list')
+
+
+@login_required
+def unsubscribe(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    category.subscribers.remove(request.user)
+    return redirect('news_list')

@@ -1,0 +1,30 @@
+Content-Type: multipart/alternative;
+ boundary="===============4517581349053477053=="
+MIME-Version: 1.0
+Subject: Test_6
+From: Artem.Tarakanov2331@yandex.ru
+To: artemtarakanov2505@gmail.com
+Date: Mon, 10 Nov 2025 09:12:36 -0000
+Message-ID: <176276595671.3096.13247027711767486677@mbh_artem>
+
+--===============4517581349053477053==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Новая статья</title>
+</head>
+<body>
+    <h2>Test_6</h2>
+    <p>asdfghjkl;asdfghhkla</p>
+    <p><strong>Здравствуй, artemtarakanov2505. Новая статья в твоём любимом разделе!</strong></p>
+</body>
+</html>
+--===============4517581349053477053==--
+
+-------------------------------------------------------------------------------

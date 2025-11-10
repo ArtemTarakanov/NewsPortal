@@ -1,0 +1,60 @@
+Content-Type: multipart/alternative;
+ boundary="===============1017904184074924816=="
+MIME-Version: 1.0
+Subject: Test_4
+From: Artem.Tarakanov2331
+To: artemtarakanov2505@gmail.com
+Date: Mon, 10 Nov 2025 08:35:12 -0000
+Message-ID: <176276371246.10792.1501114757801537@mbh_artem>
+
+--===============1017904184074924816==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+    
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Новая статья</title>
+</head>
+<body>
+    <h2>Test_4</h2>
+    <p>15646465546554644646464654654654</p>
+    <p><strong>Здравствуй, artemtarakanov2505. Новая статья в твоём любимом разделе!</strong></p>
+</body>
+</html>
+--===============1017904184074924816==--
+
+-------------------------------------------------------------------------------
+Content-Type: multipart/alternative;
+ boundary="===============0980690819625646982=="
+MIME-Version: 1.0
+Subject: Test_4
+From: Artem.Tarakanov2331
+To: artem.tarakanov2331@yandex.ru
+Date: Mon, 10 Nov 2025 08:35:12 -0000
+Message-ID: <176276371248.10792.6253369764810169639@mbh_artem>
+
+--===============0980690819625646982==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+    
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Новая статья</title>
+</head>
+<body>
+    <h2>Test_4</h2>
+    <p>15646465546554644646464654654654</p>
+    <p><strong>Здравствуй, artem.tarakanov2331. Новая статья в твоём любимом разделе!</strong></p>
+</body>
+</html>
+--===============0980690819625646982==--
+
+-------------------------------------------------------------------------------

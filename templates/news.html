@@ -38,6 +38,21 @@
                         {{ item.rating|rating_label:'text' }}
                         {{ item.rating|rating_label:'icon' }}
                     </p>
+                    
+                    {# ↓↓↓ КНОПКИ ПОДПИСКИ НА КАТЕГОРИИ ↓↓↓ #}
+                    {% if user.is_authenticated %}
+                        <div class="mb-3">
+                            <small class="text-muted">Подписаться на категории:</small>
+                            {% for category in item.categories.all %}
+                                {% if user in category.subscribers.all %}
+                                    <a href="{% url 'unsubscribe' category.id %}" class="btn btn-outline-secondary btn-sm">Отписаться от {{ category.name }}</a>
+                                {% else %}
+                                    <a href="{% url 'subscribe' category.id %}" class="btn btn-primary btn-sm">Подписаться на {{ category.name }}</a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
                     <p class="card-text">{{ item.text|censor|truncatechars:20 }}</p>
                     
                     {# ↓↓↓ КНОПКИ РЕДАКТИРОВАНИЯ И УДАЛЕНИЯ ↓↓↓ #}
@@ -83,4 +98,3 @@
         <h2>Новостей нет!</h2>
     {% endif %}
 {% endblock content %}
-

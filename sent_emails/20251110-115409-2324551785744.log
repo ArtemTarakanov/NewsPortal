@@ -1,0 +1,70 @@
+Content-Type: multipart/alternative;
+ boundary="===============6288349947170986531=="
+MIME-Version: 1.0
+Subject: 
+ =?utf-8?b?W2V4YW1wbGUuY29tXSBlY2hvICLQlNC+0LHRgNC+INC/0L7QttCw0LvQvtCy0LA=?=
+ =?utf-8?b?0YLRjCDQvdCwIE5ld3NQb3J0YWwhINCf0L7QtNGC0LLQtdGA0LTQuNGC0LUg0LI=?=
+ =?utf-8?b?0LDRiNGDINGA0LXQs9C40YHRgtGA0LDRhtC40Y4iID4gdGVtcGxhdGVzL2FjY291?=
+ =?utf-8?b?bnQvZW1haWwvZW1haWxfY29uZmlybWF0aW9uX3N1YmplY3QudHh0?=
+From: Artem.Tarakanov2331@yandex.ru
+To: artemtarakan72@gmail.com
+Date: Mon, 10 Nov 2025 08:54:09 -0000
+Message-ID: <176276484924.20992.289277301525936664@mbh_artem>
+
+--===============6288349947170986531==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Hello from example.com!
+
+You're receiving this email because user artemtarakan72 has given your email address to register an account on example.com.
+
+To confirm this is correct, go to http://127.0.0.1:8000/accounts/confirm-email/NA:1vINf7:N_tNGt1yFPz-HJG6qVcc7U7oIUkzIu1E1WiI-Qn5abM/
+
+Thank you for using example.com!
+example.com
+--===============6288349947170986531==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+cat > templates/account/email/email_confirmation_signup_message.html << 'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Добро пожаловать!</title>
+</head>
+<body>
+    
+    <h1>Добро пожаловать на NewsPortal, artemtarakan72! 🎉</h1>
+    
+    <p>Мы рады приветствовать вас в нашем сообществе!</p>
+    
+    <p>Теперь вы можете:</p>
+    <ul>
+        <li>📰 Читать свежие новости и статьи</li>
+        <li>💬 Оставлять комментарии</li>
+        <li>⭐ Ставить оценки постам</li>
+        <li>📧 Подписываться на любимые категории</li>
+    </ul>
+    
+    <p><strong>Для завершения регистрации подтвердите ваш email:</strong></p>
+    <p>
+        <a href="http://127.0.0.1:8000/accounts/confirm-email/NA:1vINf7:N_tNGt1yFPz-HJG6qVcc7U7oIUkzIu1E1WiI-Qn5abM/" style="background-color: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
+            ✅ Подтвердить регистрацию
+        </a>
+    </p>
+    
+    <p>Ссылка для подтверждения:<br>
+    <code>http://127.0.0.1:8000/accounts/confirm-email/NA:1vINf7:N_tNGt1yFPz-HJG6qVcc7U7oIUkzIu1E1WiI-Qn5abM/</code></p>
+    
+    <hr>
+    <p><small>С уважением,<br>Команда NewsPortal</small></p>
+</body>
+</html>
+EOF
+--===============6288349947170986531==--
+
+-------------------------------------------------------------------------------

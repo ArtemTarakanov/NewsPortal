@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Еженедельная подборка статей</title>
+</head>
+<body>
+    <h1>Еженедельная подборка новых статей в категории {{ category.name }}</h1>
+    
+    <p>Здравствуй, {{ username }}! Вот новые статьи за прошедшую неделю:</p>
+    
+    {% for post in posts %}
+    <div style="border: 1px solid #ddd; padding: 15px; margin: 10px 0;">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.text|truncatechars:100 }}</p>
+        <p><strong>Автор:</strong> {{ post.author.user.username }}</p>
+        <p><strong>Дата:</strong> {{ post.date_creation|date:"d.m.Y" }}</p>
+        <a href="http://127.0.0.1:8000{{ post.get_absolute_url }}">Читать полностью</a>
+    </div>
+    {% endfor %}
+    
+    <hr>
+    <p><small>С уважением,<br>Команда NewsPortal</small></p>
+</body>
+</html>
